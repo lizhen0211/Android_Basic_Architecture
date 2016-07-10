@@ -1,7 +1,9 @@
-package com.architecture;
+package com.architecture.ui;
 
 import android.app.Activity;
 import android.os.Bundle;
+
+import com.architecture.R;
 
 
 public class MainActivity extends Activity {
