@@ -1,0 +1,7 @@
+apply plugin: 'java'
+// If your IDE fails to run generation (NoClassDefFoundError), run it using gradle
+//mainClassName = "com.example.DataBaseDaoGenerator"
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'org.greenrobot:greendao-generator:3.0.0'
+}
