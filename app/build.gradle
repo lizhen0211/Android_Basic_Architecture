@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+def applicationVersionCode = 1
 android {
     compileSdkVersion 21
     buildToolsVersion "24.0.0"
