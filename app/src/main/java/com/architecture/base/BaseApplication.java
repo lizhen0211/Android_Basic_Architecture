@@ -78,7 +78,7 @@ public class BaseApplication extends Application {
     /**
      * 初始化配置
      */
-    public void initConfig() {
+    private void initConfig() {
         packageName = getPackageName();
 
         PackageManager packageManager = getPackageManager();
