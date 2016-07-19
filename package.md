@@ -9,6 +9,7 @@
       |-services               service或IntentService扩展类：负责与后台或环境交互
       |-tools                  业务相关工具类
       |-ui
+          |-adapter            适配器
           |-animation          自定义动画组件
           |-base               基础activity
           |-preferences        fragment及preferences组件
