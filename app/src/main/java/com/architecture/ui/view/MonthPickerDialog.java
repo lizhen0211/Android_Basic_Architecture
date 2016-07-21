@@ -1,4 +1,4 @@
-package com.architecture.ui.widget;
+package com.architecture.ui.view;
 
 import android.app.Dialog;
 import android.content.Context;

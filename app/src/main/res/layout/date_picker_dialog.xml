@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/common_dialog_bg"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#f9f9f9">
+
+        <TextView
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="@drawable/theme_text_bg_selector"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="@drawable/theme_text_bg_selector"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title_layout"
+        android:layout_gravity="center"
+        app:mcv_arrowColor="@color/theme_color"
+        app:mcv_leftArrowMask="@drawable/date_arrow_forward"
+        app:mcv_rightArrowMask="@drawable/date_arrow_back"
+        app:mcv_selectionColor="@color/theme_color"
+        app:mcv_showOtherDates="all"
+        app:mcv_weekDayLabels="@array/simple_weekdays_array" />
+
+
+</LinearLayout>
