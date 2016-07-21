@@ -72,7 +72,7 @@ public class MonthPickerDialog extends Dialog implements View.OnClickListener, O
 
         DateNumericAdapter viewAdapter = new DateNumericAdapter(getContext(), minYear, maxYear, "%d", "年");
         float textSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 7, getContext().getResources().getDisplayMetrics());
-        float textHeight = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 75, getContext().getResources().getDisplayMetrics());
+        float textHeight = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 75, getContext().getResources().getDisplayMetrics());
         viewAdapter.setTextSize((int) textSize);
         viewAdapter.setTextHeight((int) textHeight);
         yearPicker.setViewAdapter(viewAdapter);
@@ -89,7 +89,7 @@ public class MonthPickerDialog extends Dialog implements View.OnClickListener, O
         int curMonthIndex = mCalendar.get(Calendar.MONTH);
         DateNumericAdapter viewAdapter = new DateNumericAdapter(getContext(), minMonth, maxMonth, "%02d", "月");
         float textSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 6, getContext().getResources().getDisplayMetrics());
-        float textHeight = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 50, getContext().getResources().getDisplayMetrics());
+        float textHeight = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getContext().getResources().getDisplayMetrics());
         viewAdapter.setTextSize((int)textSize);
         viewAdapter.setTextHeight((int)textHeight);
 
