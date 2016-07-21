@@ -81,6 +81,8 @@ dependencies {
     compile 'org.greenrobot:greendao:3.0.1'
     compile 'net.zetetic:android-database-sqlcipher:3.5.1'
     compile 'com.prolificinteractive:material-calendarview:1.4.0'
+    compile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
+    compile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
 }
 
 File propFile = file('signing.properties');

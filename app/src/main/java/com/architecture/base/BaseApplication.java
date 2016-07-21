@@ -2,6 +2,7 @@ package com.architecture.base;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -9,6 +10,8 @@ import android.os.Bundle;
 
 import com.architecture.biz.dao.DaoMaster;
 import com.architecture.biz.dao.DaoSession;
+import com.squareup.leakcanary.LeakCanary;
+import com.squareup.leakcanary.RefWatcher;
 
 import org.greenrobot.greendao.database.Database;
 
@@ -37,10 +40,13 @@ public class BaseApplication extends Application {
 
     private CrashHandler crashHandler;
 
+    private RefWatcher mRefWatcher;
+
     @Override
     public void onCreate() {
         super.onCreate();
         initCrashHandler();
+        initOtherSDK();
         initConfig();
         initDataBase();
         initActivityBackRecordStack();
@@ -98,6 +104,15 @@ public class BaseApplication extends Application {
             e.printStackTrace();
         }
         channelName = applicationInfo.metaData.getString("CHANNEL_KEY");
+    }
+
+    private void initOtherSDK(){
+        mRefWatcher = LeakCanary.install(this);
+    }
+
+    public static RefWatcher getRefWatcher(Context context) {
+        BaseApplication application = (BaseApplication) context.getApplicationContext();
+        return application.mRefWatcher;
     }
 
     @Override
