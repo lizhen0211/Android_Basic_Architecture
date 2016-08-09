@@ -11,22 +11,20 @@ import com.architecture.biz.dao.DaoSession;
  */
 public class BaseActivity extends Activity {
 
-    private BaseApplication application = (BaseApplication) getApplication();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
     public DaoSession getDaoSession() {
-        return application.getDaoSession();
+        return ((BaseApplication) getApplication()).getDaoSession();
     }
 
     public void exitApplication() {
-        application.exitApplication();
+        ((BaseApplication) getApplication()).exitApplication();
     }
 
     public void finishActivity(Class<?>... activityClasses) {
-        application.finishActivity(activityClasses);
+        ((BaseApplication) getApplication()).finishActivity(activityClasses);
     }
 }
