@@ -6,6 +6,8 @@ import android.os.Bundle;
 import com.architecture.base.BaseApplication;
 import com.architecture.biz.dao.DaoSession;
 
+import java.util.List;
+
 /**
  * Created by lz on 2016/7/18.
  */
@@ -26,5 +28,9 @@ public class BaseActivity extends Activity {
 
     public void finishActivity(Class<?>... activityClasses) {
         ((BaseApplication) getApplication()).finishActivity(activityClasses);
+    }
+
+    public void finishActivityForResult(List<ActivityResult> results, Class<?>... activityClasses) {
+        ((BaseApplication) getApplication()).finishActivityForResult(results, activityClasses);
     }
 }

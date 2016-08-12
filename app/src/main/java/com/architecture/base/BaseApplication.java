@@ -10,12 +10,14 @@ import android.os.Bundle;
 
 import com.architecture.biz.dao.DaoMaster;
 import com.architecture.biz.dao.DaoSession;
+import com.architecture.ui.base.ActivityResult;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
 import org.greenrobot.greendao.database.Database;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by lz on 2016/7/18.
@@ -172,6 +174,23 @@ public class BaseApplication extends Application {
             for (int j = 0; j < activityClasses.length; j++) {
                 Activity activity = activities.get(i);
                 if (activity.getComponentName().getClassName().equals(activityClasses[j].getName())) {
+                    activity.finish();
+                }
+            }
+        }
+    }
+
+    public void finishActivityForResult(List<ActivityResult> results, Class<?>... activityClasses) {
+        for (int i = activities.size() - 1; i >= 0; i--) {
+            for (int j = 0; j < activityClasses.length; j++) {
+                Activity activity = activities.get(i);
+                if (activity.getComponentName().getClassName().equals(activityClasses[j].getName())) {
+                    if (results != null) {
+                        ActivityResult activityResult = results.get(j);
+                        if (activityResult != null) {
+                            activity.setResult(activityResult.getResultCode(), activityResult.getIntent());
+                        }
+                    }
                     activity.finish();
                 }
             }
