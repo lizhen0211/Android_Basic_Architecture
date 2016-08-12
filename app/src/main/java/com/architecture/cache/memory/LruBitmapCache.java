@@ -9,10 +9,11 @@ import android.graphics.Bitmap;
 import android.support.v4.util.LruCache;
 import android.util.DisplayMetrics;
 
-import com.android.volley.toolbox.ImageLoader.ImageCache;
+import com.android.volley.toolbox.ImageLoader;
+
 
 public class LruBitmapCache extends LruCache<String, Bitmap>
-        implements ImageCache {
+        implements ImageLoader.ImageCache {
 
     public LruBitmapCache(int maxSize) {
         super(maxSize);
