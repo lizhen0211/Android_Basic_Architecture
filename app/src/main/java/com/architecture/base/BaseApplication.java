@@ -108,7 +108,7 @@ public class BaseApplication extends Application {
         channelName = applicationInfo.metaData.getString("CHANNEL_KEY");
     }
 
-    private void initOtherSDK(){
+    private void initOtherSDK() {
         mRefWatcher = LeakCanary.install(this);
     }
 
@@ -186,9 +186,11 @@ public class BaseApplication extends Application {
                 Activity activity = activities.get(i);
                 if (activity.getComponentName().getClassName().equals(activityClasses[j].getName())) {
                     if (results != null) {
-                        ActivityResult activityResult = results.get(j);
-                        if (activityResult != null) {
-                            activity.setResult(activityResult.getResultCode(), activityResult.getIntent());
+                        if (j < results.size()) {
+                            ActivityResult activityResult = results.get(j);
+                            if (activityResult != null) {
+                                activity.setResult(activityResult.getResultCode(), activityResult.getIntent());
+                            }
                         }
                     }
                     activity.finish();
