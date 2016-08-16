@@ -26,6 +26,14 @@ public class BaseActivity extends Activity {
         ((BaseApplication) getApplication()).exitApplication();
     }
 
+    public boolean isFinishOnBackToMain() {
+        return true;
+    }
+
+    public void backToMainActivity() {
+        ((BaseApplication) getApplication()).backToMainActivity();
+    }
+
     public void finishActivity(Class<?>... activityClasses) {
         ((BaseApplication) getApplication()).finishActivity(activityClasses);
     }

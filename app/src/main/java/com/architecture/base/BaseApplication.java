@@ -11,6 +11,7 @@ import android.os.Bundle;
 import com.architecture.biz.dao.DaoMaster;
 import com.architecture.biz.dao.DaoSession;
 import com.architecture.ui.base.ActivityResult;
+import com.architecture.ui.base.BaseActivity;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
@@ -167,6 +168,19 @@ public class BaseApplication extends Application {
         }
         activities.clear();
         killProcess();
+    }
+
+    public void backToMainActivity() {
+        for (int i = activities.size() - 1; i >= 0; i--) {
+            Activity activity = activities.get(i);
+            if (activity instanceof BaseActivity) {
+                if (((BaseActivity) activity).isFinishOnBackToMain()) {
+                    activity.finish();
+                }
+            } else {
+                //throw new UnsupportedOperationException("only instance extends BaseActivity can call this method");
+            }
+        }
     }
 
     public void finishActivity(Class<?>... activityClasses) {
