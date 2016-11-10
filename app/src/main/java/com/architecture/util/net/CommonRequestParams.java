@@ -1,5 +1,7 @@
 package com.architecture.util.net;
 
+import com.android.volley.Request;
+
 import java.util.Map;
 
 /**
@@ -11,7 +13,7 @@ public class CommonRequestParams {
     /**
      * 请求方法类型
      */
-    private int method;
+    private int method = Request.Method.GET;
 
     /**
      * 请求URL
@@ -21,7 +23,7 @@ public class CommonRequestParams {
     /**
      * 请求体
      */
-    private Map<String,String> requestBody;
+    private Map<String, String> requestBody;
 
     public int getMethod() {
         return method;
@@ -43,7 +45,7 @@ public class CommonRequestParams {
         return requestBody;
     }
 
-    public void setRequestBody(Map<String,String> requestBody) {
+    public void setRequestBody(Map<String, String> requestBody) {
         this.requestBody = requestBody;
     }
 }

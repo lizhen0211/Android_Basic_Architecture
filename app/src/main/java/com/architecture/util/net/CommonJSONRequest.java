@@ -25,6 +25,10 @@ public class CommonJSONRequest<ResultType> extends CommonURLEncodedRequest<Resul
         super(params, cls, listener, errorListener);
     }
 
+    public CommonJSONRequest(Class listBeanClass, CommonRequestParams params, CommonResponse.Listener<ResultType> listener, Response.ErrorListener errorListener) {
+        super(listBeanClass, params, listener, errorListener);
+    }
+
     @Override
     public String getBodyContentType() {
         return PROTOCOL_CONTENT_TYPE;

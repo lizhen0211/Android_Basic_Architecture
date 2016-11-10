@@ -43,7 +43,7 @@ public class RequestUtil {
      * @param bodyMap
      * @return
      */
-    public static String getJsonRequestBody(Map<String,String> bodyMap) {
+    public static String getJsonRequestBody(Map<String, String> bodyMap) {
         String requestBody = null;
         if (bodyMap != null) {
             Gson gson = new Gson();

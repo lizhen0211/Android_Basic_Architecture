@@ -2,7 +2,6 @@ package com.architecture.util.net;
 
 /**
  * 错误实体类
- *
  */
 public class UnprocessableEntity {
 
