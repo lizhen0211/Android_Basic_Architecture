@@ -47,7 +47,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             public void run() {
                 try {
                     Looper.prepare();
-                    Toast toast = Toast.makeText(BaseApplication.applicationContext, "�ܱ�Ǹ,��������쳣.�����˳�", Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(BaseApplication.applicationContext, "很抱歉,程序出现异常.即将退出", Toast.LENGTH_LONG);
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();
                     Looper.loop();
