@@ -13,7 +13,7 @@ public class CommonJSONRequest<ResultType> extends CommonURLEncodedRequest<Resul
     /**
      * Charset for request.
      */
-    private static final String PROTOCOL_CHARSET = "utf-8";
+    public static final String PROTOCOL_CHARSET = "utf-8";
 
     /**
      * Content type for request.
@@ -34,6 +34,12 @@ public class CommonJSONRequest<ResultType> extends CommonURLEncodedRequest<Resul
         return PROTOCOL_CONTENT_TYPE;
     }
 
+    /**
+     * 如果json参数不全是string类型，可以重写此方法。
+     * 设置body json 内容
+     *
+     * @return
+     */
     @Override
     public byte[] getBody() {
         try {

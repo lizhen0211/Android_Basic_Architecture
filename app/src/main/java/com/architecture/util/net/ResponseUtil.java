@@ -14,6 +14,7 @@ public class ResponseUtil {
     static final Pattern pattern = Pattern.compile("<([^>]*)>(\\s*);(\\s*)rel=\"next\"");
     static final String HEAD_LINK = "Link";
     static final String SERVER_DATE = "Date";
+    static final String LAST_MODIFIED = "Last-Modified";
 
     /**
      * 获取NextUrl
@@ -56,5 +57,23 @@ public class ResponseUtil {
             }
         }
         return time;
+    }
+
+    /**
+     * 获取上次修改时间
+     * @param headers
+     * @return
+     */
+    public static String getLastModifiedTime(Map<String, String> headers) {
+        String lastModifiedTime = null;
+        if (headers != null && headers.size() > 1) {
+            for (Map.Entry<String, String> entry : headers.entrySet()) {
+                if (entry.getKey().equals(LAST_MODIFIED)) {
+                    lastModifiedTime = entry.getValue();
+                    break;
+                }
+            }
+        }
+        return lastModifiedTime;
     }
 }

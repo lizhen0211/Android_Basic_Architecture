@@ -94,6 +94,7 @@ public class CommonURLEncodedRequest<ResultType> extends Request<ResultType> {
             if (isParseResponseHeader) {
                 responseHeader.setNextURL(ResponseUtil.getNextUrl(response.headers));
                 responseHeader.setServerDate(ResponseUtil.getServerDate(response.headers));
+                responseHeader.setOrignalHeaderMap(response.headers);
                 commonResponse.setHeader(responseHeader);
             }
             return Response.success(parsedGSON,
