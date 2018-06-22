@@ -39,6 +39,8 @@ public class BaseApplication extends Application {
 
     public static String channelName;
 
+    public static Context applicationContext;
+
     private ArrayList<Activity> activities;
 
     private CrashHandler crashHandler;
@@ -88,6 +90,7 @@ public class BaseApplication extends Application {
      * 初始化配置
      */
     private void initConfig() {
+        applicationContext = getApplicationContext();
         packageName = getPackageName();
 
         PackageManager packageManager = getPackageManager();

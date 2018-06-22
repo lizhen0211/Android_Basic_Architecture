@@ -1,7 +1,5 @@
 package com.architecture.net;
 
-import android.content.Context;
-
 import com.android.volley.Cache;
 import com.android.volley.Network;
 import com.android.volley.Request;
@@ -11,6 +9,7 @@ import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
+import com.architecture.base.BaseApplication;
 import com.architecture.cache.memory.LruBitmapCache;
 
 /**
@@ -20,12 +19,10 @@ public class NetWorkMaster {
     private static NetWorkMaster mInstance;
     private RequestQueue mRequestQueue;
     private ImageLoader mImageLoader;
-    private static Context mCtx;
 
-    private NetWorkMaster(Context context) {
-        mCtx = context;
+    private NetWorkMaster() {
         // Instantiate the cache
-        Cache cache = new DiskBasedCache(context.getCacheDir(), 5 * 1024 * 1024); // 5MB cap
+        Cache cache = new DiskBasedCache(BaseApplication.applicationContext.getCacheDir(), 5 * 1024 * 1024); // 5MB cap
         // Set up the network to use HttpURLConnection as the HTTP client.
         Network network = new BasicNetwork(new HurlStack());
 
@@ -34,12 +31,12 @@ public class NetWorkMaster {
         mRequestQueue = getRequestQueue();
         mRequestQueue.start();
         mImageLoader = new ImageLoader(mRequestQueue, new LruBitmapCache(
-                LruBitmapCache.getCacheSize(context)));
+                LruBitmapCache.getCacheSize(BaseApplication.applicationContext)));
     }
 
-    public static synchronized NetWorkMaster getInstance(Context context) {
+    public static synchronized NetWorkMaster getInstance() {
         if (mInstance == null) {
-            mInstance = new NetWorkMaster(context);
+            mInstance = new NetWorkMaster();
         }
         return mInstance;
     }
@@ -48,13 +45,17 @@ public class NetWorkMaster {
         if (mRequestQueue == null) {
             // getApplicationContext() is key, it keeps you from leaking the
             // Activity or BroadcastReceiver if someone passes one in.
-            mRequestQueue = Volley.newRequestQueue(mCtx.getApplicationContext());
+            mRequestQueue = Volley.newRequestQueue(BaseApplication.applicationContext);
         }
         return mRequestQueue;
     }
 
     public <T> void addToRequestQueue(Request<T> req) {
         getRequestQueue().add(req);
+    }
+
+    public void cancelAll(final Object tag) {
+        getRequestQueue().cancelAll(tag);
     }
 
     public ImageLoader getImageLoader() {

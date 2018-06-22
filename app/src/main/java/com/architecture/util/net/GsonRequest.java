@@ -1,4 +1,4 @@
-package com.architecture.net;
+package com.architecture.util.net;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
