@@ -10,6 +10,7 @@ import com.android.volley.ServerError;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 
 import java.io.UnsupportedEncodingException;
 
@@ -47,7 +48,12 @@ public class VolleyErrorPaser {
             try {
                 String data = new String(error.networkResponse.data, "UTF-8");
                 Gson gson = new Gson();
-                UnprocessableEntity unprocessableEntity = gson.fromJson(data, UnprocessableEntity.class);
+                UnprocessableEntity unprocessableEntity = null;
+                try {
+                    unprocessableEntity = gson.fromJson(data, UnprocessableEntity.class);
+                } catch (JsonSyntaxException e) {
+                    e.printStackTrace();
+                }
                 if (paser != null) {
                     if (unprocessableEntity != null) {
                         UnprocessableEntity.Error[] errors = unprocessableEntity.getErrors();

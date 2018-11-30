@@ -8,12 +8,7 @@ import java.io.UnsupportedEncodingException;
 /**
  * Created by lz on 2016/11/10.
  */
-public class CommonJSONRequest<ResultType> extends CommonURLEncodedRequest<ResultType> {
-
-    /**
-     * Charset for request.
-     */
-    public static final String PROTOCOL_CHARSET = "utf-8";
+public class CommonJSONRequest<ResultType> extends BasicRequest<ResultType> {
 
     /**
      * Content type for request.
@@ -42,12 +37,13 @@ public class CommonJSONRequest<ResultType> extends CommonURLEncodedRequest<Resul
      */
     @Override
     public byte[] getBody() {
+        String requestBody = null;
         try {
-            String jsonRequestBody = RequestUtil.getJsonRequestBody(mRequestBody);
-            return jsonRequestBody == null ? null : jsonRequestBody.getBytes(PROTOCOL_CHARSET);
+            requestBody = mParams.getRequestBody();
+            return requestBody == null ? null : requestBody.getBytes(PROTOCOL_CHARSET);
         } catch (UnsupportedEncodingException uee) {
             VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s",
-                    mRequestBody, PROTOCOL_CHARSET);
+                    requestBody, PROTOCOL_CHARSET);
             return null;
         }
     }

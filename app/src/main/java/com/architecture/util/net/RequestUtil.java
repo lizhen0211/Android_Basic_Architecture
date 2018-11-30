@@ -1,5 +1,7 @@
 package com.architecture.util.net;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.RetryPolicy;
 import com.google.gson.Gson;
 
 import java.io.UnsupportedEncodingException;
@@ -43,7 +45,7 @@ public class RequestUtil {
      * @param bodyMap
      * @return
      */
-    public static String getJsonRequestBody(Map<String, String> bodyMap) {
+    public static String getJsonRequestBody(Map<String, Object> bodyMap) {
         String requestBody = null;
         if (bodyMap != null) {
             Gson gson = new Gson();
@@ -52,7 +54,13 @@ public class RequestUtil {
         return requestBody;
     }
 
-
+    /**
+     * 请求参数编码
+     *
+     * @param params
+     * @param paramsEncoding
+     * @return
+     */
     public static String encodeParameters(Map<String, String> params, String paramsEncoding) {
         StringBuilder encodedParams = new StringBuilder();
 
@@ -60,16 +68,35 @@ public class RequestUtil {
             Iterator uee = params.entrySet().iterator();
 
             while (uee.hasNext()) {
-                Map.Entry entry = (Map.Entry) uee.next();
-                encodedParams.append(URLEncoder.encode((String) entry.getKey(), paramsEncoding));
-                encodedParams.append('=');
-                encodedParams.append(URLEncoder.encode((String) entry.getValue(), paramsEncoding));
-                encodedParams.append('&');
+                java.util.Map.Entry entry = (java.util.Map.Entry) uee.next();
+                Object key = entry.getKey();
+                Object value = entry.getValue();
+                if (key != null && value != null) {
+                    encodedParams.append(URLEncoder.encode((String) key, paramsEncoding));
+                    encodedParams.append('=');
+                    encodedParams.append(URLEncoder.encode((String) value, paramsEncoding));
+                    encodedParams.append('&');
+                }
             }
-            encodedParams.deleteCharAt(encodedParams.length() - 1);
+            if (encodedParams.length() > 0) {
+                encodedParams.deleteCharAt(encodedParams.length() - 1);
+            }
             return encodedParams.toString();
         } catch (UnsupportedEncodingException var6) {
             throw new RuntimeException("Encoding not supported: " + paramsEncoding, var6);
         }
+    }
+
+    private static final int TIMEOUT_MS = 3000 * 10;
+
+    private static final int MAX_RETRIES = 0;
+
+    private static final int BACKOFF_MULT = 1;
+
+
+    public static RetryPolicy getDefaultRetryPolicy() {
+        DefaultRetryPolicy payRetryPolicy = new DefaultRetryPolicy(
+                TIMEOUT_MS, MAX_RETRIES, BACKOFF_MULT);
+        return payRetryPolicy;
     }
 }

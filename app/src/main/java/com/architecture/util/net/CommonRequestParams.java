@@ -21,9 +21,14 @@ public class CommonRequestParams {
     private String url;
 
     /**
-     * 请求体
+     * json请求 请求体
      */
-    private Map<String, String> requestBody;
+    private String requestBody;
+
+    /**
+     * 表单请求 请求参数
+     */
+    private Map<String, String> requestParams;
 
     public int getMethod() {
         return method;
@@ -41,11 +46,19 @@ public class CommonRequestParams {
         this.url = url;
     }
 
-    public Map<String, String> getRequestBody() {
+    public String getRequestBody() {
         return requestBody;
     }
 
-    public void setRequestBody(Map<String, String> requestBody) {
+    public void setRequestBody(String requestBody) {
         this.requestBody = requestBody;
+    }
+
+    public Map<String, String> getRequestParams() {
+        return requestParams;
+    }
+
+    public void setRequestParams(Map<String, String> requestParams) {
+        this.requestParams = requestParams;
     }
 }
